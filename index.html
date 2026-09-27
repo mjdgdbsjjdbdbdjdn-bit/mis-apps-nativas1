@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo de Apps Nativas para Celular y PC | S/ 3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #25d366;
+            --primary-dark: #128c7e;
+            --secondary: #0f172a;
+            --accent: #ffb703;
+            --bg-dark: #090d16;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAV */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .btn-header {
+            background: var(--primary);
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 130px 5% 60px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(37, 211, 102, 0.15), transparent 70%);
+        }
+
+        .badge {
+            background: rgba(255, 183, 3, 0.15);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin: 15px 0;
+            text-shadow: 0 0 20px rgba(255, 183, 3, 0.3);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--primary);
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 800;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.03);
+            background: #22c55e;
+        }
+
+        /* PLATFORMS */
+        .platforms {
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .platform-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .platform-card i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .platform-card h3 {
+            font-size: 1rem;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 50px 5%;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .feature-icon {
+            background: rgba(37, 211, 102, 0.1);
+            color: var(--primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* CONTACT SECTION */
+        .contact-box {
+            margin: 40px 5%;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid var(--primary);
+        }
+
+        .contact-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* FLOATING WHATSAPP BUTTON */
+        .float-ws {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: #000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 5%;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* DESKTOP RESPONSIVE */
+        @media (min-width: 768px) {
+            .platform-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-mobile-screen-button"></i> AppStudio<span>Nativo</span>
+        </div>
+        <a href="https://wa.me/51965060379?text=Hola,%20quiero%20información%20sobre%20la%20creación%20de%20mi%20App%20por%203%20soles" class="btn-header" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> Contactar
+        </a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="badge">🔥 OFERTA POR TIEMPO LIMITADO</div>
+        <h1>Creamos tu App Nativa para <span>Celular y PC</span></h1>
+        <div class="price-tag">S/ 3.00</div>
+        <p>Desarrollo profesional de aplicaciones ultrarrápidas, personalizadas y listas para instalar en Android, iOS, Windows y Mac.</p>
+        <a href="https://wa.me/51965060379?text=Hola,%20deseo%20pedir%20mi%20App%20nativa%20por%20S/%203" class="cta-btn" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar mi App Ahora
+        </a>
+    </section>
+
+    <!-- PLATAFORMAS -->
+    <section class="platforms">
+        <h2 class="section-title">Disponible en todas las plataformas</h2>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <i class="fa-brands fa-android"></i>
+                <h3>Android</h3>
+            </div>
+            <div class="platform-card">
+                <i class="fa-brands fa-apple"></i>
+                <h3>iOS / iPhone</h3>
+            </div>
+            <div class="platform-card">
+                <i class="fa-brands fa-windows"></i>
+                <h3>Windows PC</h3>
+            </div>
+            <div class="platform-card">
+                <i class="fa-solid fa-desktop"></i>
+                <h3>Mac / macOS</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENTAJAS -->
+    <section class="features">
+        <h2 class="section-title" style="text-align: center;">¿Por qué elegir nuestras Apps Nativas?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="feature-text">
+                    <h4>Máxima Velocidad</h4>
+                    <p>Al ser nativas, aprovechan al 100% la potencia y procesador del celular o la computadora.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
+                <div class="feature-text">
+                    <h4>Notificaciones Push</h4>
+                    <p>Llega directamente a la pantalla de tus clientes con alertas y promociones instantáneas.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
+                <div class="feature-text">
+                    <h4>Funcionamiento Offline</h4>
+                    <p>Tu aplicación puede funcionar incluso si el usuario no tiene conexión a internet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO DIRECTO -->
+    <section class="contact-box">
+        <h3>¿Tienes una idea en mente?</h3>
+        <p>Aprovecha la promoción de S/ 3 y lleva tu negocio al siguiente nivel hoy mismo.</p>
+        <a href="https://wa.me/51965060379?text=Hola,%20vengo%20de%20la%20web.%20Quiero%20asesoría%20para%20crear%20mi%20app" class="cta-btn" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
+        </a>
+    </section>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/51965060379?text=Hola,%20me%20interesa%20la%20creación%20de%20Apps%20por%20S/%203" class="float-ws" target="_blank" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 AppStudio Nativo — Todos los derechos reservados.</p>
+        <p>Contacto WhatsApp: +51 965060379</p>
+    </footer>
+
+</body>
+</html>
